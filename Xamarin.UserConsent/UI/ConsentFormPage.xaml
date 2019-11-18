@@ -21,29 +21,8 @@
                d:Text="We constantly work hard to improve your experience with the app. Please help us by allowing us to collect anonymous data."
                Style="{DynamicResource CaptionStyle}"
                TextColor="{Binding Path=PopupStyles.TextColor}" />
-        
+
         <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
-            <!--<CollectionView x:Name="ConsentRequests"
-                        ItemsSource="{Binding Requests}"
-                        VerticalOptions="Center">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Orientation="Horizontal"
-                                 Padding="10, 10, 10, 10"
-                                 HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="Center">
-                            <Switch IsToggled="{Binding IsGranted}" 
-                                    d:IsToggled="False" 
-                                    VerticalOptions="Center"
-                                    Toggled="Switch_Toggled"/>
-                            <Label Text="{Binding Description}"
-                                   Style="{DynamicResource ListItemDetailTextStyle}"
-                                   VerticalOptions="CenterAndExpand"
-                                   LineBreakMode="WordWrap"/>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>-->
             <ScrollView>
                 <StackLayout x:Name="ConsentRequests"
                             VerticalOptions="Center" />

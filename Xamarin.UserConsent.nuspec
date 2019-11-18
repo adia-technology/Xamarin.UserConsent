@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Xamarin.UserConsent</id>
+    <version>$version$</version>
+    <authors>Michał Depta</authors>
+    <owners>Adia Technology</owners>
+    <license type="expression">MIT</license> 
+    <!-- <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A cross-platform library for prompting the application user for a custom consent (e.g. to send usage statistics).</description>
+    <releaseNotes>Created an initial version.</releaseNotes>
+    <copyright>Copyright 2019 Adia, Just in time staffing AG</copyright>
+    <tags>Xamarin Consent CustomPermissions</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Rg.Plugins.Popup" version="1.2.0.223" />
+        <dependency id="Xam.Plugins.Settings" version="3.1.1" />
+        <dependency id="Xamarin.Forms" version="4.3.0.991211" />
+      </group>
+      <group targetFramework="MonoAndroid9.0">
+        <dependency id="Xam.Plugins.Settings" version="3.1.1" />
+        <dependency id="Xamarin.Android.Support.v7.AppCompat" version="28.0.0.3" />
+        <dependency id="Rg.Plugins.Popup" version="1.2.0.223" />
+        <dependency id="Xamarin.Forms" version="4.3.0.991211" />
+      </group>
+      <group targetFramework="Xamarin.iOS1.0">
+        <dependency id="Rg.Plugins.Popup" version="1.2.0.223" />
+        <dependency id="Xamarin.Forms" version="4.3.0.991211" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Xamarin.UserConsent\bin\Release\netstandard2.0\*.dll" target="lib\netstandard2.0" />
+    <file src="Xamarin.UserConsent.Droid\bin\Release\*.dll" target="lib\monoandroid90" />
+    <file src="Xamarin.UserConsent.iOS\bin\Release\*.dll" target="lib\xamarinios10" />
+  </files>
+</package>
