@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Xamarin.UserConsent</id>
-    <version>$version$</version>
+    <version>$Version$</version>
     <authors>Michał Depta</authors>
     <owners>Adia Technology</owners>
     <license type="expression">MIT</license> 
@@ -32,8 +32,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="Xamarin.UserConsent\bin\Release\netstandard2.0\*.dll" target="lib\netstandard2.0" />
-    <file src="Xamarin.UserConsent.Droid\bin\Release\*.dll" target="lib\monoandroid90" />
-    <file src="Xamarin.UserConsent.iOS\bin\Release\*.dll" target="lib\xamarinios10" />
+    <file src="Xamarin.UserConsent\bin\$Configuration$\netstandard2.0\*.dll" target="lib\netstandard2.0" />
+    <file src="Xamarin.UserConsent.Droid\bin\$Configuration$\*.dll" target="lib\monoandroid90" />
+    <file src="Xamarin.UserConsent.iOS\bin\$Configuration$\*.dll" target="lib\xamarinios10" />
   </files>
 </package>

@@ -1,0 +1,65 @@
+---
+format_version: '8'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: xamarin
+trigger_map:
+- push_branch: master
+  workflow: deploy
+- push_branch: "*"
+  workflow: build
+- pull_request_source_branch: "*"
+  workflow: build
+workflows:
+  build:
+    steps:
+    - git-clone@4.0.17: {}
+    - nuget-restore@1.0.7: {}
+    - script@1.1.5:
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            VERSION=`cat version`
+            echo "[assembly: AssemblyVersion("\""$VERSION.0"\"")]" >> GlobalAssemblyInfo.cs
+            echo "[assembly: AssemblyFileVersion("\""$VERSION.0"\"")]" >> GlobalAssemblyInfo.cs
+    - script@1.1.5:
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            msbuild /p:Configuration=$BITRISE_XAMARIN_CONFIGURATION
+    - script@1.1.5:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            VERSION=`cat version`
+            nuget pack Xamarin.UserConsent.nuspec -Properties "Configuration=$BITRISE_XAMARIN_CONFIGURATION;Version=$VERSION"
+    - slack@3.1.3:
+        inputs:
+        - channel: "#open-source"
+        - text: ''
+        - emoji: ":ghost:"
+        - thumb_url: ''
+        - icon_url: ''
+        - webhook_url: "$SLACK_OSS_WEBHOOK"
+  deploy:
+    before_run:
+    - build
+    steps:
+    - script@1.1.5:
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            nuget push *.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey $NUGET_API_KEY
+app:
+  envs:
+  - opts:
+      is_expand: false
+    BITRISE_PROJECT_PATH: Xamarin.UserConsent.sln
+  - opts:
+      is_expand: false
+    BITRISE_XAMARIN_CONFIGURATION: Release
+  - opts:
+      is_expand: false
+    BITRISE_XAMARIN_PLATFORM: Any CPU
+meta:
+  bitrise.io:
+    machine_type: performance
