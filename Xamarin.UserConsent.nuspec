@@ -6,7 +6,6 @@
     <authors>Michał Depta</authors>
     <owners>Adia Technology</owners>
     <license type="expression">MIT</license> 
-    <licenseUrl>https://github.com/adia-technology/Xamarin.UserConsent/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/adia-technology/Xamarin.UserConsent</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A cross-platform library for prompting the application user for a custom consent (e.g. to send usage statistics).</description>
