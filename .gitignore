@@ -363,3 +363,4 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/visualstudio,xamarinstudio
 .idea
+.DS_Store
