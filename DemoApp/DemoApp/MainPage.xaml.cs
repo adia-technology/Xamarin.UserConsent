@@ -1,7 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.StyleSheets;
 using Xamarin.UserConsent;
 
 namespace DemoApp
@@ -12,23 +15,29 @@ namespace DemoApp
     public partial class MainPage : ContentPage
     {
         private readonly UserConsent userConsent = new UserConsent();
+        private readonly StyleSheet popupStyles;
 
         public MainPage()
         {
             InitializeComponent();
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DemoApp.popup.css"))
+            using (var reader = new StreamReader(stream))
+            {
+                popupStyles = StyleSheet.FromReader(reader);
+            }
         }
 
         private async void Button_Standard_Clicked(object sender, EventArgs e)
         {
-            await ShowConsentPopup(PopupStyles.Default);
+            await ShowConsentPopup();
         }
 
         private async void Button_Custom_Clicked(object sender, EventArgs e)
         {
-            await ShowConsentPopup(new PopupStyles(Color.White, Color.Black, Color.LightGreen));
+            await ShowConsentPopup(this.popupStyles);
         }
 
-        private async Task ShowConsentPopup(PopupStyles styles)
+        private async Task ShowConsentPopup(StyleSheet popupStyles = null)
         {
             await userConsent.DisplayConsentRequest(new DisplayConsentFormRequest(
                 "We need your consent",
@@ -39,7 +48,7 @@ namespace DemoApp
                     new ConsentDescription("analytics", "Gather anonymous application usage data"),
                     new ConsentDescription("recording", "Record your sessions with the app"),
                     new ConsentDescription("telemetry", "Use your network connection to send data to our servers")
-                }), styles);
+                }), popupStyles);
         }
     }
 }

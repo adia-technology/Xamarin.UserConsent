@@ -4,6 +4,7 @@ using System.Linq;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
+using Xamarin.Forms.StyleSheets;
 using Xamarin.UserConsent.ViewModels;
 
 namespace Xamarin.UserConsent.UI
@@ -13,13 +14,17 @@ namespace Xamarin.UserConsent.UI
         private readonly Action<ConsentFormResult> onConfirm;
         private readonly Dictionary<string, bool> results;
 
-        public ConsentFormPage(ConsentForm form, Action<ConsentFormResult> onConfirm)
+        public ConsentFormPage(ConsentForm form, StyleSheet styles, Action<ConsentFormResult> onConfirm)
         {
             InitializeComponent();
+            if (styles != null)
+            {
+                this.Resources.Add(styles);
+            }
 
             this.onConfirm = onConfirm;
             this.results = form.Requests.ToDictionary(request => request.ConsentKey, request => request.IsGranted ?? false);
-            form.Requests.ToList().ForEach(request => this.ConsentRequests.Children.Add(CreateConsentView(request, form.PopupStyles)));
+            form.Requests.ToList().ForEach(request => this.ConsentRequests.Children.Add(CreateConsentView(request)));
 
             this.BindingContext = form;
             this.CloseWhenBackgroundIsClicked = false;
@@ -41,20 +46,22 @@ namespace Xamarin.UserConsent.UI
 
         private void UpdateConsent(string consentKey, bool granted) => this.results[consentKey] = granted;
 
-        private View CreateConsentView(ConsentRequest request, PopupStyles styles)
+        private View CreateConsentView(ConsentRequest request)
         {
             var layout = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Padding = new Thickness(10)
+                Padding = new Thickness(10),
+                StyleClass = new List<string> { "requestContainer" }
             };
 
             var @switch = new Switch
             {
                 IsToggled = request.IsGranted ?? false,
-                VerticalOptions = LayoutOptions.Center
+                VerticalOptions = LayoutOptions.Center,
+                StyleClass = new List<string> { "switch" }
             };
 
             @switch.Toggled += (s, e) => UpdateConsent(request.ConsentKey, e.Value);
@@ -66,7 +73,7 @@ namespace Xamarin.UserConsent.UI
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 LineBreakMode = LineBreakMode.WordWrap,
                 Style = Device.Styles.ListItemDetailTextStyle,
-                TextColor = styles.TextColor
+                StyleClass = new List<string> { "description" }
             };
             layout.Children.Add(label);
 

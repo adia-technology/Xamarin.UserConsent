@@ -1,0 +1,31 @@
+﻿.consentPopup {
+    background-color: #feff93;
+}
+
+.consentPupupTitle {
+    font-weight: bold;
+    color: #04b20d;
+}
+
+.consentRationale {
+    color: #04b20d;
+}
+
+.requestContainer {
+    padding: 30 10 30 10;
+}
+
+.consentSwitch {
+
+}
+
+.consentDescription {
+
+}
+
+.confirmationButton {
+    background-color: #00ff90;
+    color: white;
+    font-weight: bold;
+    border-radius: 20;
+}

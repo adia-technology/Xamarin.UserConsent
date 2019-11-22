@@ -7,20 +7,21 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              x:Class="Xamarin.UserConsent.UI.ConsentFormPage">
     <StackLayout VerticalOptions="Center" 
-                 BackgroundColor="{Binding Path=PopupStyles.BackgroundColor}"
+                 BackgroundColor="White"
+                 StyleClass="consentPopup"
                  HorizontalOptions="Center"
                  Padding="20, 20, 20, 20"
                  Margin="20, 20, 20, 20">
         <Label Text="{Binding Title}" 
                d:Text="We need your consent"
                Style="{DynamicResource TitleStyle}"
-               TextColor="{Binding Path=PopupStyles.TextColor}"
+               StyleClass="consentPupupTitle"
                d:TextColor="Default" 
                HeightRequest="30"/>
         <Label Text="{Binding Description}"
                d:Text="We constantly work hard to improve your experience with the app. Please help us by allowing us to collect anonymous data."
                Style="{DynamicResource CaptionStyle}"
-               TextColor="{Binding Path=PopupStyles.TextColor}" />
+               StyleClass="consentRationale" />
 
         <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
             <ScrollView>
@@ -30,8 +31,7 @@
         </StackLayout>
         <Button Text="{Binding ConfirmationButtonText}" 
                     d:Text="Confirm"
-                    TextColor="{Binding Path=PopupStyles.TextColor}"
-                    BackgroundColor="{Binding Path=PopupStyles.ButtonColor}"
+                    StyleClass="confirmationButton"
                     HorizontalOptions="FillAndExpand"
                     Clicked="OnClose" />
     </StackLayout>
