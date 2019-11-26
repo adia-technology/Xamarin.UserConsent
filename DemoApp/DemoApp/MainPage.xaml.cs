@@ -20,7 +20,7 @@ namespace DemoApp
         public MainPage()
         {
             InitializeComponent();
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DemoApp.popup.css"))
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DemoApp.Resources.popup.css"))
             using (var reader = new StreamReader(stream))
             {
                 popupStyles = StyleSheet.FromReader(reader);

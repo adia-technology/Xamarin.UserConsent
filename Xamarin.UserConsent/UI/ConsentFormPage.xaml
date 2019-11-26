@@ -6,24 +6,35 @@
              mc:Ignorable="d"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              x:Class="Xamarin.UserConsent.UI.ConsentFormPage">
-    <StackLayout VerticalOptions="Center" 
-                 BackgroundColor="White"
-                 StyleClass="consentPopup"
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="0" />
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="Margin" Value="20, 20, 20, 20" />
+            </Style>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <Frame StyleClass="consentPopup"
+           VerticalOptions="Center"
+           HorizontalOptions="Center">
+        <StackLayout VerticalOptions="Center" 
                  HorizontalOptions="Center"
-                 Padding="20, 20, 20, 20"
-                 Margin="20, 20, 20, 20">
-        <Label Text="{Binding Title}" 
-               d:Text="We need your consent"
-               Style="{DynamicResource TitleStyle}"
-               StyleClass="consentPupupTitle"
-               d:TextColor="Default" 
-               HeightRequest="30"/>
-        <Label Text="{Binding Description}"
-               d:Text="We constantly work hard to improve your experience with the app. Please help us by allowing us to collect anonymous data."
-               Style="{DynamicResource CaptionStyle}"
-               StyleClass="consentRationale" />
-
-        <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
+                 Padding="20, 20, 20, 20">
+            <Label Text="{Binding Title}" 
+                   d:Text="We need your consent"
+                   Style="{DynamicResource TitleStyle}"
+                   StyleClass="consentPupupTitle"
+                   d:TextColor="Default" 
+                   HeightRequest="30"/>
+            <Label Text="{Binding Description}"
+                   d:Text="We constantly work hard to improve your experience with the app. Please help us by allowing us to collect anonymous data."
+                   Style="{DynamicResource CaptionStyle}"
+                   StyleClass="consentRationale" />
+            <BoxView HorizontalOptions="Fill"
+                     StyleClass="separator"/>
+            <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
             <ScrollView>
                 <StackLayout x:Name="ConsentRequests"
                             VerticalOptions="Center" />
@@ -31,8 +42,11 @@
         </StackLayout>
         <Button Text="{Binding ConfirmationButtonText}" 
                     d:Text="Confirm"
+                    AutomationId="Xamarin.UserConsent:ConfirmationButton"
                     StyleClass="confirmationButton"
                     HorizontalOptions="FillAndExpand"
                     Clicked="OnClose" />
-    </StackLayout>
+        </StackLayout>
+    </Frame>
+    
 </pages:PopupPage>

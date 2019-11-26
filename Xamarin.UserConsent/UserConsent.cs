@@ -3,14 +3,12 @@ using Plugin.Settings.Abstractions;
 using System.Linq;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
-using System;
 using Xamarin.UserConsent.ViewModels;
-using Xamarin.Forms;
 using Xamarin.Forms.StyleSheets;
 
 namespace Xamarin.UserConsent
 {
-    public class UserConsent
+    public class UserConsent : IUserConsent
     {
         private ISettings Settings => CrossSettings.Current;
 
@@ -50,7 +48,7 @@ namespace Xamarin.UserConsent
 
             var popup = new UI.ConsentFormPage(ToConsentForm(request), popupStyles, resultHandler);
             await PopupNavigation.Instance.PushAsync(popup);
-            
+
             return await tcs.Task;
         }
 

@@ -61,7 +61,8 @@ namespace Xamarin.UserConsent.UI
             {
                 IsToggled = request.IsGranted ?? false,
                 VerticalOptions = LayoutOptions.Center,
-                StyleClass = new List<string> { "switch" }
+                StyleClass = new List<string> { "switch" },
+                AutomationId = $"Xamarin.UserConsent:{request.ConsentKey}"
             };
 
             @switch.Toggled += (s, e) => UpdateConsent(request.ConsentKey, e.Value);
