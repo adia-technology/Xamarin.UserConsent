@@ -1,5 +1,7 @@
 ﻿.consentPopup {
-    background-color: #feff93;
+    background-color: #b6ff00;
+    border-radius: 20;
+    margin: 10 0 10 0;
 }
 
 .consentPupupTitle {
@@ -9,6 +11,11 @@
 
 .consentRationale {
     color: #04b20d;
+}
+
+.separator {
+    height: 2;
+    color: #808080;
 }
 
 .requestContainer {
@@ -27,5 +34,5 @@
     background-color: #00ff90;
     color: white;
     font-weight: bold;
-    border-radius: 20;
+    border-radius: 10;
 }
