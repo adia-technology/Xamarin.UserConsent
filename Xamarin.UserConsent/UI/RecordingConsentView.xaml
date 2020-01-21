@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:themes="clr-namespace:Xamarin.UserConsent.Resources;assembly=Xamarin.UserConsent"
+             mc:Ignorable="d"
+             x:Name="RecordingConsent"
+             x:Class="Xamarin.UserConsent.UI.RecordingConsentView">
+    <ContentView.Content>
+        <StackLayout
+          BindingContext="{x:Reference RecordingConsent}"
+          BackgroundColor="White"
+          Padding="0, 20, 0, 0">
+            <Label
+              Margin="0, 15"
+              HorizontalOptions="Center"
+              Text="{Binding Header}"
+              FontSize="{x:Static themes:FontSizes.MainHeadingLabelFontSize}" />
+            <BoxView
+                HorizontalOptions="FillAndExpand"
+                Color="Gray" 
+                HeightRequest="0.5" />
+            <StackLayout
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="StartAndExpand"
+                Padding="30"
+                Spacing="30">
+                <Label
+                    Text="{Binding HelpRequest}"
+                    FontAttributes="Bold"
+                    FontSize="{x:Static themes:FontSizes.LabelFontSize}" />
+                <Label
+                    Text="{Binding Reason}"
+                    FontSize="{x:Static themes:FontSizes.LabelFontSize}" />
+                <Label
+                    Text="{Binding Description}"
+                    TextColor="Black"
+                    FontSize="{x:Static themes:FontSizes.LabelFontSize}"
+                    FontAttributes="Bold" />
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding LearnMore}" />
+                            <Span Text=" " />
+                            <Span Text="{Binding DetailsLink}"
+                                  TextColor="{x:Static themes:Colors.ActionableButtonColor}">
+                                <Span.GestureRecognizers>
+                                    <!--Add command to show rendered Smartlook terms here-->
+                                    <TapGestureRecognizer />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal"
+                    Padding="0, 20">
+                    <Label
+                        x:Name="NoLabel"
+                        Text="{Binding NoText}" 
+                        FontSize="{x:Static themes:FontSizes.MainHeadingLabelFontSize}" />
+                    <Switch
+                        Toggled="OnSwitchToggled"
+                        IsToggled="{Binding ConsentGiven}"/>
+                    <Label
+                        x:Name="YesLabel"
+                        Text="{Binding YesText}" 
+                        FontSize="{x:Static themes:FontSizes.MainHeadingLabelFontSize}" />
+                </StackLayout>
+            </StackLayout>
+            <Button
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="End"
+              Text="{Binding Confirmation}"
+              FontSize="{x:Static themes:FontSizes.BottomButtonFontSize}"
+              BackgroundColor="{x:Static themes:Colors.ActionableButtonColor}"
+              TextColor="White"
+              Pressed="ConfirmationClicked"/>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
