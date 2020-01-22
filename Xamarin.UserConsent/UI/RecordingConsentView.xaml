@@ -46,7 +46,7 @@
                             <Span Text="{Binding DetailsLink}"
                                   TextColor="{x:Static themes:Colors.ActionableButtonColor}">
                                 <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnDetailsLinkTaped" NumberOfTapsRequired="1" />
+                                    <TapGestureRecognizer Tapped="OnDetailsLinkTapped" NumberOfTapsRequired="1" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>

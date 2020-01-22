@@ -129,7 +129,7 @@ namespace Xamarin.UserConsent.UI
             }
         }
 
-        private void OnDetailsLinkTaped(object sender, EventArgs e)
+        private void OnDetailsLinkTapped(object sender, EventArgs e)
         {
             OnDetailsLinkTap?.Invoke(sender, e);
         }
