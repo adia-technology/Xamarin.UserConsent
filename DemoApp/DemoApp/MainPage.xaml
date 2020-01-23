@@ -3,18 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:Xamarin.UserConsent.UI;assembly=Xamarin.UserConsent"
              mc:Ignorable="d"
              x:Class="DemoApp.MainPage">
+    <ContentPage.Resources>
+        <StyleSheet Source="Resources/recordingconsent.css"/>
+    </ContentPage.Resources>
 
-    <StackLayout VerticalOptions="Center">
-        <!-- Place new controls here -->
-        <Button
-                Text="Show With Standard Styles"
-                HorizontalOptions="Center"
-                Clicked="Button_Standard_Clicked"/>
-        <Button Text="Show With Custom Styles"
-                HorizontalOptions="Center"
-                Clicked="Button_Custom_Clicked" />
-    </StackLayout>
+    <ui:RecordingConsentView
+        Header="Select preference"
+        HelpRequest="Help request"
+        Reason="We would like to gather anonymous information about your experience with the app. This will allow us to constantly improve. Please give us your consent to do the following"
+        Description="Record your interactions with the app"
+        LearnMore="Learn more"
+        DetailsLink="LINK"
+        NoText="NO"
+        YesText="YES"
+        Confirmation="Confirm"
+        ConsentGiven="{Binding ConsentGiven}"
+        NoLabelActiveColor="Black"
+        YesLabelActiveColor ="#2ed282"
+        InactiveColor="#748189"
+        OnConfirmed="ConsentConfirmed"/>
 
 </ContentPage>

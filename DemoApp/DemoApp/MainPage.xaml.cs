@@ -50,5 +50,12 @@ namespace DemoApp
                     new ConsentDescription("telemetry", "Use your network connection to send data to our servers")
                 }), popupStyles);
         }
+
+        public bool ConsentGiven;
+
+        private async void ConsentConfirmed(object sender, EventArgs e)
+        {
+            await ShowConsentPopup();
+        }
     }
 }

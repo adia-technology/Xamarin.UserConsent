@@ -1,0 +1,53 @@
+﻿.mainLayout {
+    background-color: white;
+    padding: 20 0 0 0;
+}
+
+.headerLabel {
+    margin: 15 0 15 0;
+    font-size: medium;
+    text-align: center;
+}
+
+.boxView {
+    color: gray;
+    height: 0.5;
+}
+
+.consentLayout {
+    padding: 30;
+    -xf-spacing: 30;
+}
+
+.requestLabel {
+    font-size: small;
+    font-style: bold;
+}
+
+.reasonLabel {
+    font-size: small;
+}
+
+.descriptionLabel {
+    color: black;
+    font-size: small;
+    font-style: bold;
+}
+
+.toggleLayout {
+    padding: 0 20;
+}
+
+.yesNoLabel {
+    font-size: medium;
+}
+
+.confirmButton {
+    color: white;
+    background-color: #2ed282;
+    font-size: 14;
+}
+
+.detailsLink {
+    color: #2ed282;
+}
