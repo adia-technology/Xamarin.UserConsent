@@ -46,8 +46,7 @@
                             <Span Text="{Binding DetailsLink}"
                                   TextColor="{x:Static themes:Colors.ActionableButtonColor}">
                                 <Span.GestureRecognizers>
-                                    <!--Add command to show rendered Smartlook terms here-->
-                                    <TapGestureRecognizer />
+                                    <TapGestureRecognizer Tapped="OnDetailsLinkTapped" NumberOfTapsRequired="1" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>

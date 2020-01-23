@@ -108,6 +108,8 @@ namespace Xamarin.UserConsent.UI
 
         public event EventHandler OnConfirmed;
 
+        public event EventHandler OnDetailsLinkTap;
+
         public void ConfirmationClicked(object sender, EventArgs e)
         {
             OnConfirmed?.Invoke(sender, e);
@@ -125,6 +127,11 @@ namespace Xamarin.UserConsent.UI
                 NoLabel.TextColor = Color.Black;
                 YesLabel.TextColor = Colors.DisabledTextColor;
             }
+        }
+
+        private void OnDetailsLinkTapped(object sender, EventArgs e)
+        {
+            OnDetailsLinkTap?.Invoke(sender, e);
         }
     }
 }
