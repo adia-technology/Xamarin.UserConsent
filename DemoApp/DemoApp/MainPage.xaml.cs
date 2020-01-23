@@ -16,18 +16,15 @@ namespace DemoApp
     {
         private readonly UserConsent userConsent = new UserConsent();
         private readonly StyleSheet popupStyles;
-        private string recordingStyles;
 
         public MainPage()
         {
             InitializeComponent();
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DemoApp.Resources.recordingconsent.css"))
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DemoApp.Resources.popup.css"))
             using (var reader = new StreamReader(stream))
             {
-                recordingStyles = reader.ReadToEnd();
                 popupStyles = StyleSheet.FromReader(reader);
             }
-            ConsentView.Resources.Add(popupStyles);
         }
 
         private async void Button_Standard_Clicked(object sender, EventArgs e)

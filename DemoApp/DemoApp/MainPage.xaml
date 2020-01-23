@@ -6,30 +6,24 @@
              xmlns:ui="clr-namespace:Xamarin.UserConsent.UI;assembly=Xamarin.UserConsent"
              mc:Ignorable="d"
              x:Class="DemoApp.MainPage">
-
-    <!--<StackLayout VerticalOptions="Center">
-        --><!-- Place new controls here --><!--
-        <Button
-                Text="Show With Standard Styles"
-                HorizontalOptions="Center"
-                Clicked="Button_Standard_Clicked"/>
-        <Button Text="Show With Custom Styles"
-                HorizontalOptions="Center"
-                Clicked="Button_Custom_Clicked" />
-    </StackLayout>-->
+    <ContentPage.Resources>
+        <StyleSheet Source="Resources/recordingconsent.css"/>
+    </ContentPage.Resources>
 
     <ui:RecordingConsentView
-        x:Name="ConsentView"
-        Header="HEADER"
+        Header="Select preference"
         HelpRequest="Help request"
-        Reason="That's the reason"
-        Description="Hakuna matata. Bla bla bla"
+        Reason="We would like to gather anonymous information about your experience with the app. This will allow us to constantly improve. Please give us your consent to do the following"
+        Description="Record your interactions with the app"
         LearnMore="Learn more"
         DetailsLink="LINK"
         NoText="NO"
         YesText="YES"
         Confirmation="Confirm"
         ConsentGiven="{Binding ConsentGiven}"
+        NoLabelActiveColor="Black"
+        YesLabelActiveColor ="#2ed282"
+        InactiveColor="#748189"
         OnConfirmed="ConsentConfirmed"/>
 
 </ContentPage>

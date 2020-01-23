@@ -1,8 +1,6 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System;
-using Xamarin.UserConsent.Resources;
-using Xamarin.Forms.StyleSheets;
 
 namespace Xamarin.UserConsent.UI
 {
@@ -39,8 +37,24 @@ namespace Xamarin.UserConsent.UI
         public static readonly BindableProperty ConsentGivenProperty =
             BindableProperty.Create(nameof(ConsentGiven), typeof(bool), typeof(RecordingConsentView), true, BindingMode.TwoWay);
 
-        public static readonly BindableProperty CustomStyleProperty =
-            BindableProperty.Create(nameof(CustomStyle), typeof(StyleSheet), typeof(RecordingConsentView));
+        // ToDo Bindable Properties for colors should be removed after Xamarin.Forms upgrade to 4.5.0 https://github.com/xamarin/Xamarin.Forms/pull/9157
+        // Label Color should be changed with StyleClass property change e.g. NoLabel.StyleClass = new List<string>{"noActiveLabelClass"}
+        public static readonly BindableProperty NoLabelActiveColorProperty =
+            BindableProperty.Create(nameof(NoLabelActiveColor), typeof(Color), typeof(RecordingConsentView), null,
+                BindingMode.Default, null, OnColorPropertyChanged);
+
+        public static readonly BindableProperty YesLabelActiveColorProperty =
+            BindableProperty.Create(nameof(YesLabelActiveColor), typeof(Color), typeof(RecordingConsentView), null,
+                BindingMode.Default, null, OnColorPropertyChanged);
+
+        public static readonly BindableProperty InactiveColorProperty =
+            BindableProperty.Create(nameof(InactiveColor), typeof(Color), typeof(RecordingConsentView), null,
+                BindingMode.Default, null, OnColorPropertyChanged);
+
+        private static void OnColorPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+        {
+            ((RecordingConsentView)bindable).SetLabelColors();
+        }
 
         public string Header
         {
@@ -102,10 +116,22 @@ namespace Xamarin.UserConsent.UI
             set => SetValue(ConsentGivenProperty, value);
         }
 
-        public StyleSheet CustomStyle
+        public Color NoLabelActiveColor
         {
-            get => (StyleSheet)GetValue(CustomStyleProperty);
-            set => SetValue(CustomStyleProperty, value);
+            get => (Color)GetValue(NoLabelActiveColorProperty);
+            set => SetValue(NoLabelActiveColorProperty, value);
+        }
+
+        public Color YesLabelActiveColor
+        {
+            get => (Color)GetValue(YesLabelActiveColorProperty);
+            set => SetValue(YesLabelActiveColorProperty, value);
+        }
+
+        public Color InactiveColor
+        {
+            get => (Color)GetValue(InactiveColorProperty);
+            set => SetValue(InactiveColorProperty, value);
         }
 
         public RecordingConsentView()
@@ -129,13 +155,13 @@ namespace Xamarin.UserConsent.UI
         {
             if (ConsentGiven)
             {
-                NoLabel.TextColor = Colors.DisabledTextColor;
-                YesLabel.TextColor = Colors.ActionableButtonColor;
+                NoLabel.TextColor = InactiveColor;
+                YesLabel.TextColor = YesLabelActiveColor;
             }
             else
             {
-                NoLabel.TextColor = Color.Black;
-                YesLabel.TextColor = Colors.DisabledTextColor;
+                NoLabel.TextColor = NoLabelActiveColor;
+                YesLabel.TextColor = InactiveColor;
             }
         }
 

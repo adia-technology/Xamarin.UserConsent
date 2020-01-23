@@ -3,84 +3,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:themes="clr-namespace:Xamarin.UserConsent.Resources;assembly=Xamarin.UserConsent"
              mc:Ignorable="d"
              x:Name="RecordingConsent"
              x:Class="Xamarin.UserConsent.UI.RecordingConsentView">
     <ContentView.Content>
         <StackLayout
           BindingContext="{x:Reference RecordingConsent}"
-          StyleClass="mainLayout"
-          Padding="0, 20, 0, 0">
+          StyleClass="mainLayout">
             <Label
-              Margin="0, 15"
-              HorizontalOptions="Center"
-              Text="{Binding Header}"
-              FontSize="{x:Static themes:FontSizes.MainHeadingLabelFontSize}" />
+                Text="{Binding Header}"
+                StyleClass="headerLabel"/>
             <BoxView
-                StyleClass="boxView"
-                HorizontalOptions="FillAndExpand"
-                HeightRequest="0.5" />
+                StyleClass="boxView"/>
             <StackLayout
+                StyleClass="consentLayout"
                 HorizontalOptions="CenterAndExpand"
-                VerticalOptions="StartAndExpand"
-                Padding="30"
-                Spacing="30">
+                VerticalOptions="StartAndExpand">
                 <Label
                     Text="{Binding HelpRequest}"
-                    FontAttributes="Bold"
-                    StyleClass="requestLabel"
-                    FontSize="{x:Static themes:FontSizes.LabelFontSize}" />
+                    StyleClass="requestLabel"/>
                 <Label
                     Text="{Binding Reason}"
-                    StyleClass="reasonLabel"
-                    FontSize="{x:Static themes:FontSizes.LabelFontSize}" />
+                    StyleClass="reasonLabel"/>
                 <Label
                     Text="{Binding Description}"
-                    StyleClass="descriptionLabel"
-                    TextColor="Black"
-                    FontSize="{x:Static themes:FontSizes.LabelFontSize}"
-                    FontAttributes="Bold" />
-                <Label>
-                    <Label.FormattedText>
+                    StyleClass="descriptionLabel"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="{Binding LearnMore}"/>
+                    <Label Grid.Column="1" 
+                           StyleClass="detailsLink">
+                        <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{Binding LearnMore}" />
-                            <Span Text=" " />
-                            <Span Text="{Binding DetailsLink}"
-                                  TextColor="{x:Static themes:Colors.ActionableButtonColor}">
+                            <Span Text="{Binding DetailsLink}">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnDetailsLinkTapped" NumberOfTapsRequired="1" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
                 <StackLayout
+                    StyleClass="toggleLayout"
                     HorizontalOptions="Center"
-                    Orientation="Horizontal"
-                    Padding="0, 20">
+                    Orientation="Horizontal">
                     <Label
                         x:Name="NoLabel"
                         Text="{Binding NoText}" 
-                        StyleClass="noYesLabel"
-                        FontSize="{x:Static themes:FontSizes.MainHeadingLabelFontSize}" />
+                        StyleClass="yesNoLabel" />
                     <Switch
                         Toggled="OnSwitchToggled"
                         IsToggled="{Binding ConsentGiven}"/>
                     <Label
                         x:Name="YesLabel"
                         Text="{Binding YesText}" 
-                        FontSize="{x:Static themes:FontSizes.MainHeadingLabelFontSize}" />
+                        StyleClass="yesNoLabel" />
                 </StackLayout>
             </StackLayout>
             <Button
+              Text="{Binding Confirmation}"
+              StyleClass="confirmButton"
               HorizontalOptions="FillAndExpand"
               VerticalOptions="End"
-              Text="{Binding Confirmation}"
-              FontSize="{x:Static themes:FontSizes.BottomButtonFontSize}"
-              BackgroundColor="{x:Static themes:Colors.ActionableButtonColor}"
-              StyleClass="confirmButton"
-              TextColor="White"
               Pressed="ConfirmationClicked"/>
         </StackLayout>
     </ContentView.Content>
