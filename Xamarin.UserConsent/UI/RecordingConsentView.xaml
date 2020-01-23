@@ -10,7 +10,7 @@
     <ContentView.Content>
         <StackLayout
           BindingContext="{x:Reference RecordingConsent}"
-          BackgroundColor="White"
+          StyleClass="mainLayout"
           Padding="0, 20, 0, 0">
             <Label
               Margin="0, 15"
@@ -18,8 +18,8 @@
               Text="{Binding Header}"
               FontSize="{x:Static themes:FontSizes.MainHeadingLabelFontSize}" />
             <BoxView
+                StyleClass="boxView"
                 HorizontalOptions="FillAndExpand"
-                Color="Gray" 
                 HeightRequest="0.5" />
             <StackLayout
                 HorizontalOptions="CenterAndExpand"
@@ -29,12 +29,15 @@
                 <Label
                     Text="{Binding HelpRequest}"
                     FontAttributes="Bold"
+                    StyleClass="requestLabel"
                     FontSize="{x:Static themes:FontSizes.LabelFontSize}" />
                 <Label
                     Text="{Binding Reason}"
+                    StyleClass="reasonLabel"
                     FontSize="{x:Static themes:FontSizes.LabelFontSize}" />
                 <Label
                     Text="{Binding Description}"
+                    StyleClass="descriptionLabel"
                     TextColor="Black"
                     FontSize="{x:Static themes:FontSizes.LabelFontSize}"
                     FontAttributes="Bold" />
@@ -59,6 +62,7 @@
                     <Label
                         x:Name="NoLabel"
                         Text="{Binding NoText}" 
+                        StyleClass="noYesLabel"
                         FontSize="{x:Static themes:FontSizes.MainHeadingLabelFontSize}" />
                     <Switch
                         Toggled="OnSwitchToggled"
@@ -75,6 +79,7 @@
               Text="{Binding Confirmation}"
               FontSize="{x:Static themes:FontSizes.BottomButtonFontSize}"
               BackgroundColor="{x:Static themes:Colors.ActionableButtonColor}"
+              StyleClass="confirmButton"
               TextColor="White"
               Pressed="ConfirmationClicked"/>
         </StackLayout>

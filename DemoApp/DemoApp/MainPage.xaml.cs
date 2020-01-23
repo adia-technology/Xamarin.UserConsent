@@ -16,15 +16,18 @@ namespace DemoApp
     {
         private readonly UserConsent userConsent = new UserConsent();
         private readonly StyleSheet popupStyles;
+        private string recordingStyles;
 
         public MainPage()
         {
             InitializeComponent();
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DemoApp.Resources.popup.css"))
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DemoApp.Resources.recordingconsent.css"))
             using (var reader = new StreamReader(stream))
             {
+                recordingStyles = reader.ReadToEnd();
                 popupStyles = StyleSheet.FromReader(reader);
             }
+            ConsentView.Resources.Add(popupStyles);
         }
 
         private async void Button_Standard_Clicked(object sender, EventArgs e)
@@ -49,6 +52,13 @@ namespace DemoApp
                     new ConsentDescription("recording", "Record your sessions with the app"),
                     new ConsentDescription("telemetry", "Use your network connection to send data to our servers")
                 }), popupStyles);
+        }
+
+        public bool ConsentGiven;
+
+        private async void ConsentConfirmed(object sender, EventArgs e)
+        {
+            await ShowConsentPopup();
         }
     }
 }
