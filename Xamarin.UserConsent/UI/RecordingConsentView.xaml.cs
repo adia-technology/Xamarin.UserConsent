@@ -2,6 +2,7 @@
 using Xamarin.Forms.Xaml;
 using System;
 using Xamarin.UserConsent.Resources;
+using Xamarin.Forms.StyleSheets;
 
 namespace Xamarin.UserConsent.UI
 {
@@ -37,6 +38,9 @@ namespace Xamarin.UserConsent.UI
 
         public static readonly BindableProperty ConsentGivenProperty =
             BindableProperty.Create(nameof(ConsentGiven), typeof(bool), typeof(RecordingConsentView), true, BindingMode.TwoWay);
+
+        public static readonly BindableProperty CustomStyleProperty =
+            BindableProperty.Create(nameof(CustomStyle), typeof(StyleSheet), typeof(RecordingConsentView));
 
         public string Header
         {
@@ -96,6 +100,12 @@ namespace Xamarin.UserConsent.UI
         {
             get => (bool)GetValue(ConsentGivenProperty);
             set => SetValue(ConsentGivenProperty, value);
+        }
+
+        public StyleSheet CustomStyle
+        {
+            get => (StyleSheet)GetValue(CustomStyleProperty);
+            set => SetValue(CustomStyleProperty, value);
         }
 
         public RecordingConsentView()

@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:Xamarin.UserConsent.UI;assembly=Xamarin.UserConsent"
              mc:Ignorable="d"
              x:Class="DemoApp.MainPage">
 
-    <StackLayout VerticalOptions="Center">
-        <!-- Place new controls here -->
+    <!--<StackLayout VerticalOptions="Center">
+        --><!-- Place new controls here --><!--
         <Button
                 Text="Show With Standard Styles"
                 HorizontalOptions="Center"
@@ -15,6 +16,20 @@
         <Button Text="Show With Custom Styles"
                 HorizontalOptions="Center"
                 Clicked="Button_Custom_Clicked" />
-    </StackLayout>
+    </StackLayout>-->
+
+    <ui:RecordingConsentView
+        x:Name="ConsentView"
+        Header="HEADER"
+        HelpRequest="Help request"
+        Reason="That's the reason"
+        Description="Hakuna matata. Bla bla bla"
+        LearnMore="Learn more"
+        DetailsLink="LINK"
+        NoText="NO"
+        YesText="YES"
+        Confirmation="Confirm"
+        ConsentGiven="{Binding ConsentGiven}"
+        OnConfirmed="ConsentConfirmed"/>
 
 </ContentPage>
