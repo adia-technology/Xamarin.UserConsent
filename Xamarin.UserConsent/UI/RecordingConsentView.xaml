@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,70 +8,72 @@
              x:Name="RecordingConsent"
              x:Class="Xamarin.UserConsent.UI.RecordingConsentView">
     <ContentView.Content>
-        <StackLayout
-          BindingContext="{x:Reference RecordingConsent}"
-          StyleClass="mainLayout">
-            <Label
-                Text="{Binding Header}"
-                StyleClass="headerLabel"/>
-            <BoxView
-                StyleClass="boxView"/>
+        <ScrollView>
             <StackLayout
-                StyleClass="consentLayout"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="StartAndExpand">
+                BindingContext="{x:Reference RecordingConsent}"
+                StyleClass="mainLayout">
                 <Label
-                    Text="{Binding HelpRequest}"
-                    StyleClass="requestLabel"/>
-                <Label
-                    Text="{Binding Reason}"
-                    StyleClass="reasonLabel"/>
-                <Label
-                    Text="{Binding Description}"
-                    StyleClass="descriptionLabel"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Grid.Column="0" Text="{Binding LearnMore}"/>
-                    <Label Grid.Column="1" 
-                           StyleClass="detailsLink">
-                        <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{Binding DetailsLink}">
-                                <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnDetailsLinkTapped" NumberOfTapsRequired="1" />
-                                </Span.GestureRecognizers>
-                            </Span>
-                        </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </Grid>
+                    Text="{Binding Header}"
+                    StyleClass="headerLabel" />
+                <BoxView
+                    StyleClass="boxView" />
                 <StackLayout
-                    StyleClass="toggleLayout"
-                    HorizontalOptions="Center"
-                    Orientation="Horizontal">
+                    StyleClass="consentLayout"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="StartAndExpand">
                     <Label
-                        x:Name="NoLabel"
-                        Text="{Binding NoText}" 
-                        StyleClass="yesNoLabel" />
-                    <Switch
-                        Toggled="OnSwitchToggled"
-                        IsToggled="{Binding ConsentGiven}"/>
+                        Text="{Binding HelpRequest}"
+                        StyleClass="requestLabel" />
                     <Label
-                        x:Name="YesLabel"
-                        Text="{Binding YesText}" 
-                        StyleClass="yesNoLabel" />
+                        Text="{Binding Reason}"
+                        StyleClass="reasonLabel" />
+                    <Label
+                        Text="{Binding Description}"
+                        StyleClass="descriptionLabel" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Text="{Binding LearnMore}" />
+                        <Label Grid.Column="1"
+                               StyleClass="detailsLink">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding DetailsLink}">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnDetailsLinkTapped" NumberOfTapsRequired="1" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                    <StackLayout
+                        StyleClass="toggleLayout"
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal">
+                        <Label
+                            x:Name="NoLabel"
+                            Text="{Binding NoText}"
+                            StyleClass="yesNoLabel" />
+                        <Switch
+                            Toggled="OnSwitchToggled"
+                            IsToggled="{Binding ConsentGiven}" />
+                        <Label
+                            x:Name="YesLabel"
+                            Text="{Binding YesText}"
+                            StyleClass="yesNoLabel" />
+                    </StackLayout>
                 </StackLayout>
+                <Button
+                    Text="{Binding Confirmation}"
+                    StyleClass="confirmButton"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="End"
+                    Pressed="ConfirmationClicked" />
             </StackLayout>
-            <Button
-              Text="{Binding Confirmation}"
-              StyleClass="confirmButton"
-              HorizontalOptions="FillAndExpand"
-              VerticalOptions="End"
-              Pressed="ConfirmationClicked"/>
-        </StackLayout>
+        </ScrollView>
     </ContentView.Content>
 </ContentView>
