@@ -19,34 +19,36 @@
     <Frame StyleClass="consentPopup"
            VerticalOptions="Center"
            HorizontalOptions="Center">
-        <StackLayout VerticalOptions="Center" 
+        <ScrollView>
+            <StackLayout VerticalOptions="Center" 
                  HorizontalOptions="Center"
                  Padding="20, 20, 20, 20">
-            <Label Text="{Binding Title}" 
+                <Label Text="{Binding Title}" 
                    d:Text="We need your consent"
                    Style="{DynamicResource TitleStyle}"
                    StyleClass="consentPupupTitle"
                    d:TextColor="Default" 
                    HeightRequest="30"/>
-            <Label Text="{Binding Description}"
+                <Label Text="{Binding Description}"
                    d:Text="We constantly work hard to improve your experience with the app. Please help us by allowing us to collect anonymous data."
                    Style="{DynamicResource CaptionStyle}"
                    StyleClass="consentRationale" />
-            <BoxView HorizontalOptions="Fill"
+                <BoxView HorizontalOptions="Fill"
                      StyleClass="separator"/>
-            <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
-            <ScrollView>
-                <StackLayout x:Name="ConsentRequests"
+                <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
+                    <ScrollView>
+                        <StackLayout x:Name="ConsentRequests"
                             VerticalOptions="Center" />
-            </ScrollView>
-        </StackLayout>
-        <Button Text="{Binding ConfirmationButtonText}" 
+                    </ScrollView>
+                </StackLayout>
+                <Button Text="{Binding ConfirmationButtonText}" 
                     d:Text="Confirm"
                     AutomationId="Xamarin.UserConsent:ConfirmationButton"
                     StyleClass="confirmationButton"
                     HorizontalOptions="FillAndExpand"
                     Clicked="OnClose" />
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </Frame>
-    
+
 </pages:PopupPage>
